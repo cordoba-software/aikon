@@ -37,7 +37,7 @@ var configTest = extend({
             'platform' : 'Windows 8.1',
             'version' : 11
         }, genericCapability)],
-    baseUrl: 'http://127.0.0.1:1337/'
+    baseUrl: 'http://127.0.0.1:8080/'
 }, genericConfig);
 
 var configDev = extend({
@@ -51,7 +51,7 @@ var configDev = extend({
         }
     },
     verbose: true,
-    baseUrl: 'http://127.0.0.1:1337/'
+    baseUrl: 'http://127.0.0.1:8080/'
 }, genericConfig);
 
 exports.config = process.env.NODE_ENV === "production" ? configProd : configTest;
