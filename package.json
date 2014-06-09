@@ -28,6 +28,7 @@
   "scripts": {
     "start": "node app.js",
     "debug": "node debug app.js",
+    "test": "protractor config/protractor.config.js",
     "postinstall": "node_modules/.bin/bower install"
   },
   "main": "app.js",
