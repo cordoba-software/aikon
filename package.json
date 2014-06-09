@@ -36,5 +36,13 @@
     "url": "git://github.com/anonymous node/sails user/Aikon.git"
   },
   "author": "anonymous node/sails user",
-  "license": ""
+  "license": "",
+  "devDependencies": {
+    "chai": "^1.9.1",
+    "chai-as-promised": "^4.1.1",
+    "extend": "^1.2.1",
+    "mocha": "^1.20.1",
+    "node.extend": "^1.0.10",
+    "protractor": "^0.24.0"
+  }
 }

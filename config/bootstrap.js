@@ -10,8 +10,8 @@
  */
 
 module.exports.bootstrap = function(cb) {
-
+    ListaPrecios.create({"nombre": "Genius Inicial", "precio": "100"}, cb);
   // It's very important to trigger this callack method when you are finished
   // with the bootstrap!  (otherwise your server will never lift, since it's waiting on the bootstrap)
-  cb();
+
 };
