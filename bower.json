@@ -1,0 +1,14 @@
+{
+  "name": "Aikon",
+  "version": "0.0.1",
+  "description": "Aikon version web",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "assets/js/dependencies",
+    "test",
+    "tests"
+  ]
+}
