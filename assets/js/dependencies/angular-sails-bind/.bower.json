@@ -1,6 +1,6 @@
 {
   "name": "angular-sails-bind",
-  "version": "0.2.0",
+  "version": "1.0.3",
   "ignore": [
     "lib",
     "test",
@@ -14,17 +14,19 @@
     "README.md"
   ],
   "dependencies": {
-    "angular": "~1.2.16"
+    "angular": "*"
+  },
+  "devDependencies": {
+    "angular-mocks": "*"
   },
   "homepage": "https://github.com/diegopamio/angular-sails-bind",
-  "_release": "0.2.0",
+  "_release": "1.0.3",
   "_resolution": {
     "type": "version",
-    "tag": "v0.2.0",
-    "commit": "8a367ec0a82156cadb594519e91e8dc037035078"
+    "tag": "v1.0.3",
+    "commit": "c734873b9af950154a2cd93e125e12a7bffb51ac"
   },
   "_source": "git://github.com/diegopamio/angular-sails-bind.git",
-  "_target": "~0.2.0",
-  "_originalSource": "angular-sails-bind",
-  "_direct": true
+  "_target": ">1.0.0",
+  "_originalSource": "angular-sails-bind"
 }
