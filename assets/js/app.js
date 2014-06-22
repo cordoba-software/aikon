@@ -31,6 +31,20 @@ app.controller("navbar", ['$scope', '$location', function ($scope, $location) {
     $scope.isActive = function (viewLocation) {
         return viewLocation === $location.path();
     };
+    $scope.showAbout = function () {
+        BootstrapDialog.show({
+            title: 'Acerca de Aikon (web)',
+            message: 'Este es un nuevo producto de Córdoba Software. Aikon web es la reencarnación de Aikon en' +
+                'la nube.',
+            type: BootstrapDialog.TYPE_PRIMARY,
+            buttons: [{
+                label: 'Ok, entendí',
+                action: function(dialogItself) {
+                    dialogItself.close();
+                }
+            }]
+        });
+    };
 }]);
 
 app.directive('keyTrap', function() {
