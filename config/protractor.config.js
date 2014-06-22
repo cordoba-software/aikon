@@ -7,6 +7,7 @@
 
 extend = require("node.extend");
 
+var environment = process.env.NODE_ENV;
 var genericConfig = {
     framework: "mocha",
     specs: ['../test/spec/*-spec.js'],
@@ -23,35 +24,36 @@ var genericCapability = {
     'tunnel-identifier': process.env.TRAVIS_JOB_NUMBER
 };
 
-var configTest = extend({
-    sauceUser: 'wpeyronel',
-    sauceKey: 'e80dd8d7-d9ef-427c-b3e8-86562164be82',
+var configurationsByEnvironment = {
+    test : extend({
+        sauceUser: 'wpeyronel',
+        sauceKey: 'e80dd8d7-d9ef-427c-b3e8-86562164be82',
 
-    multiCapabilities: [
-        extend({
-            'browserName': 'chrome'
-        }, genericCapability), extend({
-            'browserName': 'firefox'
-        }, genericCapability), extend({
-            'browserName' : 'internet explorer',
-            'platform' : 'Windows 8.1',
-            'version' : 11
-        }, genericCapability)],
-    baseUrl: 'http://127.0.0.1:8080/'
-}, genericConfig);
+        multiCapabilities: [
+            extend({
+                'browserName': 'chrome'
+            }, genericCapability), extend({
+                'browserName': 'firefox'
+            }, genericCapability), extend({
+                'browserName' : 'internet explorer',
+                'platform' : 'Windows 8.1',
+                'version' : 11
+            }, genericCapability)],
+        baseUrl: 'http://127.0.0.1:8080/'
+    }, genericConfig),
+    dev : extend({
+        seleniumAddress: 'http://127.0.0.1:4444/wd/hub',
+        capabilities: {
+            'browserName': 'chrome',
+            'name': "Development Build",
+            'build': "N/A",
+            'chromeOptions': {
+                args: ['--lang=en-us']
+            }
+        },
+        verbose: true,
+        baseUrl: 'http://127.0.0.1:8080/'
+    }, genericConfig)
+};
 
-var configDev = extend({
-    seleniumAddress: 'http://127.0.0.1:4444/wd/hub',
-    capabilities: {
-        'browserName': 'chrome',
-        'name': "Development Build",
-        'build': "N/A",
-        'chromeOptions': {
-            args: ['--lang=en-us']
-        }
-    },
-    verbose: true,
-    baseUrl: 'http://127.0.0.1:8080/'
-}, genericConfig);
-
-exports.config = process.env.NODE_ENV === "production" ? configProd : configTest;
+exports.config = configurationsByEnvironment[environment];
