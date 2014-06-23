@@ -1,0 +1,148 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="panel panel-default">
+                <ul class="nav nav-tabs nav-justified">
+                    <li class="active"><a href="#registrar" data-toggle="tab">Quiero registar mi comercio</a></li>
+                    <li><a href="#ingresar" data-toggle="tab"> Ya tengo mi comercio registrado</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active fade in" id="registrar">
+                        <div class="panel-body">
+                            <form accept-charset="UTF-8" role="form" action="/auth/local/register" method="post">
+                                <fieldset>
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <input class="form-control"
+                                                   placeholder="<%= __('Nombre de tu comercio')%>"
+                                                   required
+                                                   name="username"
+                                                   type="text">
+                                    <span  class="input-group-btn">
+                                        <span
+                                                class="btn btn-default"
+                                                data-container="body"
+                                                data-toggle="popover"
+                                                data-placement="top"
+                                                data-trigger="hover"
+                                                data-content="<%= __('El nombre del comercio sirve para que podamos mostrarte solo las listas de precios de tu comercio.') %>">
+                                            <%= __('¿Para qué?') %></span>
+                                    </span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <input class="form-control"
+                                                   placeholder="<%= __('Contraseña') %>"
+                                                   name="password"
+                                                   required
+                                                   pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"
+                                                   onchange="
+                                                    this.setCustomValidity(this.validity.patternMismatch ? this.title : '');
+                                                    if(this.checkValidity()) form.password_retry.pattern = this.value;
+                                                    "
+                                                   type="password"
+                                                   value=""
+                                                   title="<%= __('¡Que sea dificil! La contraseña tiene que tener al menos 6 letras, con algunas en mayúsculas y otras en minúsculas, y números.') %>"
+                                                   >
+                                    <span  class="input-group-btn">
+                                        <span
+                                                class="btn btn-default"
+                                                data-container="body"
+                                                data-toggle="popover"
+                                                data-placement="right"
+                                                data-trigger="hover"
+                                                data-content="<%= __('La contraseña es para que nadie más pueda usar tu lista de precios.') %>"
+                                                >
+                                            <%= __('¿Para qué?') %></span>
+                                    </span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <input class="form-control"
+                                                   placeholder="<%= __('Repetí la contraseña') %>"
+                                                   name="password_retry"
+                                                   required
+                                                   pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"
+                                                   type="password"
+                                                   value=""
+                                                   title="<%= __('Ups, tenés que escribir dos veces la MISMA contraseña, ¿se te escapó un teclazo?') %>"
+                                                   onchange="
+                                                        this.setCustomValidity(this.validity.patternMismatch ? this.title : '');
+                                                        "
+                                                    >
+                                    <span  class="input-group-btn">
+                                        <span
+                                                class="btn btn-default"
+                                                data-container="body"
+                                                data-toggle="popover"
+                                                data-placement="right"
+                                                data-trigger="hover"
+                                                data-content="<%= __('Te pedimos de nuevo la contraseña para asegurarnos que escribas lo que creés que estás escribiendo (porque no se ve).') %>">
+                                            <%= __('¿Para qué?') %></span>
+                                    </span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <input class="form-control"
+                                                   placeholder="<%= __('Email (opcional)') %>"
+                                                   name="email"
+                                                   type="email" value="">
+                                    <span  class="input-group-btn">
+                                        <span
+                                                class="btn btn-default"
+                                                data-container="body"
+                                                data-toggle="popover"
+                                                data-placement="bottom"
+                                                data-trigger="hover"
+                                                data-content="<%= __('Opcionalmente, si nos dejás tu email podremos contactarte por cualquier problema (por ejemplo, si te olvidaste la contraseña).') %>">
+                                        <%= __('¿Para qué?') %></span>
+                                    </span>
+                                        </div>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input name="remember" type="checkbox" checked="true" value="Remember Me"> <%= __('Recordar para la próxima') %>
+                                        </label>
+                                    </div>
+                                    <input class="btn btn-lg btn-success btn-block" type="submit" value="<%= __('Registrar y empezar') %>">
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="ingresar">
+                        <div class="panel-body">
+                            <form accept-charset="UTF-8" role="form" action="/auth/local" method="post">
+                                <fieldset>
+                                    <div class="form-group">
+                                        <input class="form-control"
+                                               placeholder="<%= __('Nombre de tu comercio')%>"
+                                               name="identifier"
+                                               type="text">
+                                    </div>
+                                    <div class="form-group">
+                                        <input class="form-control"
+                                               placeholder="<%= __('Contraseña') %>"
+                                               name="password"
+                                               type="password" value="">
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input name="remember" type="checkbox" checked="true" value="Remember Me"> <%= __('Recordar para la próxima') %>
+                                        </label>
+                                    </div>
+                                    <input class="btn btn-lg btn-success btn-block" type="submit" value="<%= __('Ingresar') %>">
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+        $('[data-toggle="popover"]').popover()
+</script>

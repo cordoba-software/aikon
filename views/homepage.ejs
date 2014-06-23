@@ -1,12 +1,18 @@
-<div class="jumbotron">
-    <div class="container">
-        <h1><%= __('Bienvenido')%></h1>
-        <p><%= __('Esto es Aikon, un sistema web para gestionar tu comercio ' +
-                    'en la nube facilmente y sin problemas. Registra tu comercio gratis y empezá usarlo ' +
-                    'en menos de 2 minutos.') %></p>
-        <p>
-            <a class="btn btn-primary btn-lg" role="button"><%= __('Empezá ya!')%>
-                &raquo;</a>
-        </p>
+<% if (!user) { %>
+    <div class="jumbotron">
+        <div class="container">
+            <h1><%= __('Bienvenido')%></h1>
+            <p><%= __('Esto es Aikon, un sistema web para gestionar tu comercio ' +
+                        'en la nube facilmente y sin problemas. Registra tu comercio gratis y empezá usarlo ' +
+                        'en menos de 2 minutos.') %></p>
+            <%- partial('partials/register') %>
+        </div>
     </div>
-</div>
+<% } else { %>
+    <div class="jumbotron">
+        <div class="container">
+            <h1>Bienvenido de vuelta <%= user.username %></h1>
+            <input class="btn btn-lg btn-success btn-block" type="submit" value="<%= __('Ir a la Lista de Precios') %>">
+        </div>
+    </div>
+<% }%>

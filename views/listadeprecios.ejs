@@ -1,5 +1,5 @@
-<div class="container">
-    <div class="row" ng-controller="ItemsCtrl">
+<div class="container" ng-controller="ItemsCtrl">
+    <div class="row">
         <div class="md-col-8">
             <div class="input-group">
                 <input class="form-control input-lg" autofocus="autofocus" ng-model="searchText" type="text" placeholder="<%= __('Buscar por código, descripción, categorías, palabras clave...') %>">
@@ -32,7 +32,7 @@
     <div class="row">
         <div
         <form novalidate role="form">
-            Nombre: <input type="text" id="nuevonombre" ng-model="newItem.nombre"/> <%= __('Precio') %>  <input id="nuevoprecio" ng-model="newItem.precio"/>  <button href="" id="agregar" class="btn btn-active" ng-click="ListaPrecioss.push(newItem);newItem={}"> <%= __('Agregar')%></button>
+            Nombre: <input type="text" id="nuevonombre" ng-model="newItem.nombre"/> <%= __('Precio') %>  <input id="nuevoprecio" ng-model="newItem.precio"/>  <button href="" id="agregar" class="btn btn-active" ng-click="add()"> <%= __('Agregar')%></button>
         </form>
     </div>
 </div> <!-- /container -->

@@ -29,6 +29,9 @@
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#" ng-click="showAbout()" analytics-on analytics-category="dialog"><%= __('Acerca de Aikon')%></a></li>
                 <li><a href="mailto:aikon@cordobasoftware.com.ar" analytics-on analytics-category="email"><%= __('Contacto')%></a></li>
+                <% if (user) { %>
+                <li><form class="navbar-form"><a class="btn btn-warning" href="/logout" analytics-on analytics-category="auth"><%= __('Salir')%></a></form></li>
+                <% }%>
             </ul>
         </div><!--/.nav-collapse -->
     </div>
