@@ -16,7 +16,8 @@
     "angular-sails-bind": ">1.0.0",
     "angular-xeditable": ">0.1.0",
     "angularitics": ">0.15.0",
-    "bootstrap3-dialog": "*"
+    "bootstrap3-dialog": "*",
+    "spinjs": "~2.0.1"
   },
   "resolutions": {
     "jquery": "1.11.0"

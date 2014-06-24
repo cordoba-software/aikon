@@ -10,17 +10,7 @@ describe('La lista de precios', function () {
         browser.get("/lista-de-precios");
     });
 
-    describe('deberia tener un input para buscar que', function () {
-        it('exista', function () {
-            expect(element(by.model('searchText')).isPresent()).to.eventually.be.true;
-        });
-//        it('agregue un item nuevo', function () {
-//            var cantArticulos = element(by.id("lista")).length;
-//            element(by.id('nuevoNombre')).sendKeys('Genius Automated');
-//            element(by.id('nuevoPrecio')).sendKeys('150');
-//            element(by.id('agregar')).click();
-//            expect(element(by.id('lista')).length).to.eventually.equal(3);
-//        });
-
+    it("debería redireccionar a la página de registro si no hay ninguna empresa logueada.", function () {
+        expect(element(by.id('requiereLogin')).isPresent()).to.eventually.be.true;
     });
 });

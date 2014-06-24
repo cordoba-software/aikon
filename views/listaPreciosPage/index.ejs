@@ -1,0 +1,13 @@
+<div class="container" ng-controller="ItemsCtrl">
+    <div class="row">
+        <%- partial('partials/sections/searchBar')%>
+        <br/>
+        <%- partial('partials/sections/addItemsPanel')%>
+        <br/>
+        <%- partial('partials/sections/itemsListTable')%>
+    </div>
+</div>
+<script>
+    $('[data-toggle="popover"]').popover()
+</script>
+

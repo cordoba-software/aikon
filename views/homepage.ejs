@@ -1,7 +1,7 @@
 <% if (!user) { %>
     <div class="jumbotron">
         <div class="container">
-            <h1><%= __('Bienvenido')%></h1>
+            <h1><%= __('Bienvenido!')%></h1>
             <p><%= __('Esto es Aikon, un sistema web para gestionar tu comercio ' +
                         'en la nube facilmente y sin problemas. Registra tu comercio gratis y empezá usarlo ' +
                         'en menos de 2 minutos.') %></p>
@@ -10,9 +10,10 @@
     </div>
 <% } else { %>
     <div class="jumbotron">
-        <div class="container">
-            <h1>Bienvenido de vuelta <%= user.username %></h1>
-            <input class="btn btn-lg btn-success btn-block" type="submit" value="<%= __('Ir a la Lista de Precios') %>">
+        <div class="content">
+            <h1><%= __('Bienvenido')%> <%= user.username %></h1>
+            <a href="/lista-de-precios" class="btn btn-success btn-lg"><i class="fa fa-play-circle-o fa-2x"></i> <span class="h2"><%= __('Ir a la Lista de Precios') %></span></a>
+
         </div>
     </div>
 <% }%>

@@ -1,0 +1,41 @@
+<div class="md-col-10" has-loading-spinner="viewLoading" >
+    <table id="lista" class="table table-striped table-hover">
+        <thead>
+        <tr>
+            <th class="col-xs-1">Código</th>
+            <th class="col-xs-6">Descripción</th>
+            <th class="col-xs-1">Precio</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-click="setFocus($index)" ng-class="{'info': $index == focusIndex }" ng-repeat="item in ListaPreciossFiltrada = (ListaPrecioss | filter:searchText )">
+            <td><span ng-class="{'h1': $index == focusIndex }" editable-text="item.codigo">{{item.codigo}}</span></td>
+            <td><span ng-class="{'h1': $index == focusIndex }" editable-text="item.descripcion">{{item.descripcion}}</span></td>
+            <td><span ng-class="{'h1': $index == focusIndex }" editable-number="item.precio">{{item.precio | currency }}</span>
+
+            </td>
+            <td>
+                <div ng-show="$index == focusIndex" class="popover right" style="display: block;position: relative">
+                    <div class="arrow"></div>
+                    <h3 class="popover-title">Más sobre este artículo</h3>
+                    <div class="popover-content">
+                        <button class="btn btn-danger" ng-click="remove(item)">
+                            <i class="glyphicon glyphicon-trash"></i>
+                            <span><%= __('Borrar') %></span>
+                        </button>
+                        <button class="btn btn-warning" ng-click="duplicate(item)">
+                            <i class="fa fa-files-o"></i>
+                            <span><%= __('Duplicar') %></span>
+                        </button>
+
+
+
+                    </div>
+                </div>
+
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

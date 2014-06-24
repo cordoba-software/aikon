@@ -7,7 +7,7 @@
 
 module.exports = {
     index : function (req, res) {
-        res.view('listadeprecios', { title: 'ListaDePrecios'});
+        res.view({ title: 'ListaDePrecios'});
     }
 };
 
