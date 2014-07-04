@@ -1,24 +1,34 @@
 <div ng-controller="addItemsCtrl">
     <div class="row">
         <div class="col-md-2 col-md-offset-10" ng-hide="addingItems">
-            <button ng-click="toggleAdd()" class="btn btn-success btn-block">
+            <button ng-click="toggleAdd()" class="btn btn-success">
                 <i class="glyphicon glyphicon-plus-sign"></i> <%= __('Agregar artículos') %>
             </button>
         </div>
     </div>
     <div ng-show="addingItems" class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">
+                <button type="button" class="close" ng-click="toggleAdd()" data-dismiss="alerto"
+                        data-container="body"
+                        data-toggle="popover"
+                        data-placement="right"
+                        data-trigger="hover"
+                        data-title="<%= __('Más rápido con Esc') %> "
+                        data-content="<%= __('Dándole Escape mientras estás creando un artículo nuevo, cierra el panel y vuelve al modo de búsqueda.') %>"
+                        ><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <strong><%= __('Agregar Artículos') %></strong>
+                <%= __('Podés agregar todos los artículos que quieras desde este panel y cerrarlo cuando termines.') %>
+            </h3>
+        </div>
         <div class="panel-collapse collapse in">
             <div class="panel-body">
-                <div class="alert alert-success alert-dismissable">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                    <strong><%= __('Ventana de "Agregar Artículos"') %></strong> Podés agregar todos los artículos que quieras desde este panel y cerrarlo cuando termines.
-                </div>
                 <form name="addItem"  role="form" class="form" ng-submit="add()">
                     <div class="row">
                         <div class="col-xs-2">
                             <input focus-on="newItemAdded, addingItems" class="form-control" type="text" id="nuevonombre" ng-model="newItem.codigo" placeholder="<%= __('Código') %>"/>
                         </div>
-                        <div class="col-xs-5" ng-class="{'has-error': addItem.descripcion.$invalid && addItem.descripcion.$dirty}">
+                        <div class="col-xs-6" ng-class="{'has-error': addItem.descripcion.$invalid && addItem.descripcion.$dirty}">
                             <input class="form-control" type="text" name="descripcion" required ng-model="newItem.descripcion" placeholder="<%= __('Descripción') %>"/>
                             <span ng-show="addItem.descripcion.$invalid && addItem.descripcion.$dirty" class="help-block"><%= __('Todo artículo tiene que tener una descripción') %></span>
                         </div>
@@ -36,14 +46,14 @@
                                     data-content="<%= __('Dándole Enter cuando terminaste de ingresar el precio agrega el artículo y te deja listo para agregar el próximo.') %>"
                                     >
                                 <button type="submit"
-                                        id="agregar" class="btn btn-primary"
+                                        id="agregar" class="btn btn-primary btn-block"
                                         ng-disabled="!addItem.$valid"
                                         class="btn btn-default">
-                                    <i class="glyphicon glyphicon-plus-sign"></i> <%= __('Agregar y limpiar')%></button>
+                                    <i class="glyphicon glyphicon-plus-sign"></i> <%= __('Agregar')%></button>
                             </div>
                         </div>
                         <div class="col-xs-1">
-                            <button
+                            <!--button
                                     ng-click="toggleAdd()"
                                     class="btn btn-active"
                                     data-container="body"
@@ -54,10 +64,11 @@
                                     data-content="<%= __('Dándole Escape mientras estás creando un artículo nuevo, cierra el panel y vuelve al modo de búsqueda.') %>"
                                     >
                                 <i class="glyphicon glyphicon-remove-circle"></i> <%= __('Listo') %>
-                            </button>
+                            </button-->
                         </div>
                     </div>
                 </form>
+                <%- partial('excelImportDialog') %>
             </div>
         </div>
     </div>

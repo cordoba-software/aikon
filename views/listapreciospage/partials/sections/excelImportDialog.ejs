@@ -1,0 +1,98 @@
+<script type="text/ng-template" id="excelImportDialog.html">
+    <div class="modal-header">
+        <h3 class="modal-title">Asistente de Importación</h3>
+    </div>
+    <div class="modal-body">
+        <form class="form-horizontal" role="form">
+            <div class="form-group">
+                <label class="control-label col-md-4" for="sheets"><%= __('Importar artículos desde la siguiente hoja:') %></label>
+                <div class="col-md-7">
+                    <select
+                            class="form-control"
+                            ng-model="opcionesDeImportacion.selectedSheetName"
+                            ng-options="selectedSheetName for selectedSheetName in sheetNames">
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-4" for="header"><%= __('¿Tiene encabezado la lista?') %></label>
+                <div class="btn-group col-md-7">
+                    <button ng-click="hasHeader = true" ng-class="{'btn-primary' : hasHeader}" class="btn btn-default "><%= __('Sí') %></button>
+                    <button ng-click="hasHeader = false" ng-class="{'btn-primary' : !hasHeader}" class="btn btn-default "><%= __('No') %></button>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-4" for="header"><%= __('¿En qué fila está el primer artículo?') %></label>
+                <div class="col-md-2">
+                    <input class="form-control" type="number" ng-model="opcionesDeImportacion.primeraFila" value="1">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-4" for="header"><%= __('¿Qué columnas del excel se coresponden con estos datos?') %></label>
+                <%
+                    var fields = [
+                        {title: __('Código de Producto'), value: 'codigo'},
+                        {title: __('Descripción'), value: 'descripcion'},
+                        {title: __('Precio'), value: 'precio'}
+                    ];
+
+                    fields.forEach(function (field, index) {
+                %>
+                    <span class="control-label col-md-4 <% if (index > 1) { %> col-md-offset-4 <% } %>"><%= field.title %>:</span>
+                    <div class="col-md-3">
+                        <select
+                                class="form-control"
+                                ng-model="opcionesDeImportacion.deDondeImportar.<%= field.value %>"
+                                ng-options="v.title for (k, v) in opcionesDeImportacion.columns">
+                            <!--option value=""><%= __('Lo pongo a mano después') %></option-->
+                        </select>
+                    </div>
+                <%
+                    });
+                %>
+            </div>
+            <label class="control-label" for="header"><%= __('¿Qué otras columnas querés importar?') %></label>
+            <div ng-repeat="columna in columnasSinUso()" class="form-group">
+                <div class="col-md-3">
+                    <span class="control-label col-md-4">{{columna.title}}</span>
+                </div>
+                <div class="col-md-5">
+                    <select id="sheets" ng-model="opcionesDeImportacion.columns[columna.title].tipoImportacion" class="form-control">
+                        <option ng-selected="true" value="3"><%= __('No importar.') %></option>
+                        <!--option value="1"><%= __('Agregar al final del valor en la columna:') %></option-->
+                        <option value="2"><%= __('Agregar como una nueva columna llamada:') %></option>
+                    </select>
+                </div>
+                <div class="col-md-3" ng-show="opcionesDeImportacion.columns[columna.title].tipoImportacion =='1'">
+                    <select
+                            class="form-control"
+                            ng-model="columna.importarComo[0]">
+                        <% fields.forEach(function (field) { %>
+                            <option value="<%= field.value %>"><%= field.value %></option>
+                        <% }); %>
+                    </select>
+                </div>
+                <div class="col-md-3" ng-show="opcionesDeImportacion.columns[columna.title].tipoImportacion =='2'" >
+                    <input ng-model="columna.importarComo[0]" class="form-control" type="text">
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <!--input type="checkbox" ng-checked="recordarPreferencias"> <%= __('Recordar mis preferencias para la próxima') %> <end-->
+        <button class="btn btn-default" ng-click="cancel()">Cancelar</button>
+        <button class="btn btn-primary" ng-click="importar()">Importar</button>
+    </div>
+</script>
+<br/>
+
+<div class="content">
+    <div class="alert alert-warning" droppable drag-enter="style={border:'3px solid '}" drag-leave="style={}"
+         ng-style="style">
+        <%= __('Arrastrá un archivo Excel acá') %>
+    </div>
+    <%= __('O buscalo en tu PC:') %>
+    <div class="alert alert-warning" >
+        <input type="file" ng-model="archivoAImportar" ng-change="importarDesdeArchivo" />
+    </div>
+</div>
